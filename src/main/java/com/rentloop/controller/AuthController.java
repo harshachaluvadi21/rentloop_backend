@@ -23,4 +23,10 @@ public class AuthController {
         try { return ResponseEntity.ok(authService.register(req)); }
         catch (RuntimeException e) { return ResponseEntity.badRequest().body(Map.of("error", e.getMessage())); }
     }
+
+    @GetMapping("/seed")
+    public ResponseEntity<?> seed() {
+        try { return ResponseEntity.ok(Map.of("message", authService.seedDemoData())); }
+        catch (Exception e) { return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage())); }
+    }
 }

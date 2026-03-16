@@ -34,6 +34,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/seed").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/api/public/**").permitAll()
                 .requestMatchers("/api/items/browse", "/api/items/{id}").permitAll()
                 .requestMatchers("/api/announcements").permitAll()
                 .requestMatchers("/error").permitAll()

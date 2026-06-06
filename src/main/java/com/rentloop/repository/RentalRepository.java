@@ -1,10 +1,10 @@
 package com.rentloop.repository;
 
 import com.rentloop.entity.Rental;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
-public interface RentalRepository extends JpaRepository<Rental, String> {
+public interface RentalRepository extends MongoRepository<Rental, String> {
     List<Rental> findByRenterId(String renterId);
     List<Rental> findByOwnerId(String ownerId);
     List<Rental> findByItemId(String itemId);

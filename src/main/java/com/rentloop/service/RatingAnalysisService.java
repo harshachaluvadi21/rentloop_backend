@@ -78,7 +78,7 @@ public class RatingAnalysisService {
         if (subjectReviews.isEmpty()) return;
 
         // --- Scheduler Safety: Skip if no new reviews since last analysis ---
-        Optional<LocalDateTime> lastAnalyzed = analysisLogRepo.findLastAnalyzedAt(userId);
+        Optional<LocalDateTime> lastAnalyzed = analysisLogRepo.findTopByUserIdOrderByAnalyzedAtDesc(userId).map(RatingAnalysisLog::getAnalyzedAt);
         if (lastAnalyzed.isPresent()) {
             boolean hasNewReviews = subjectReviews.stream()
                 .anyMatch(r -> r.getCreatedAt() != null && r.getCreatedAt().isAfter(lastAnalyzed.get()));

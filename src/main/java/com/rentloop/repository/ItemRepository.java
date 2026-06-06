@@ -1,10 +1,10 @@
 package com.rentloop.repository;
 
 import com.rentloop.entity.Item;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
-public interface ItemRepository extends JpaRepository<Item, String> {
+public interface ItemRepository extends MongoRepository<Item, String> {
     List<Item> findByOwnerId(String ownerId);
     List<Item> findByStatusAndApprovedTrue(Item.Status status);
     List<Item> findByApprovedFalse();
